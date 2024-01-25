@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    
+}
+
+h1{
+    font-size: 30px;
+font-family: Comfortaa;
+font-weight: 400;
+word-wrap: break-word
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: auto;
+    align-items: center;
+}
+
+.del{
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    border: 5px;
+}
