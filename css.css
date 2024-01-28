@@ -3,6 +3,10 @@
     
 }
 
+.boss{
+    background-color: #E0FFFF	;
+}
+
 h1{
     font-size: 30px;
 font-family: Comfortaa;
@@ -10,7 +14,7 @@ font-weight: 400;
 word-wrap: break-word
 }
 
-.content{
+.obligatory{
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -25,3 +29,4 @@ word-wrap: break-word
     cursor: pointer;
     border: 5px;
 }
+
