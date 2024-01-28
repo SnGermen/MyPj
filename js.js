@@ -1,50 +1,47 @@
+let container = [];
+const HK = 'Hk';
 
-let container = []
-let HK = 'Hk'
-
-
-page = {
+const page = {
     context: {
         daysContainer: document.querySelector('.obligatory'),
-       
+    }
+};
+
+function loadData() {
+    const habitsString = localStorage.getItem(HK);
+    const habitArr = JSON.parse(habitsString);
+    if (Array.isArray(habitArr)) {
+        container = habitArr;
     }
 }
 
-
-//utilis
-function loadData(){
-    const habbitsString = localStorage.getItem(HK)
-    const habbitArr = JSON.parse(habbitsString)
-    if(Array.isArray(habbitArr)){
-        container = habbitArr
-    }
+function saveData() {
+    localStorage.setItem(HK, JSON.stringify(container));
 }
 
-function saveData(){
-    localStorage.setItem(HK, JSON.stringify(container))
-}
+function add() {
 
+    const additionalInput = document.createElement('input');
+    additionalInput.classList.add('inpt');
+    additionalInput.type = 'text';
+    additionalInput.placeholder = 'Additional Item';
+    page.context.daysContainer.appendChild(additionalInput);
+     
 
-function add(act){
-    page.context.daysContainer.innerHTML = ''
-
-   act.days.array.forEach((day, i) => {
-    const element = document.createElement('div')
-    element.classList.add('hb')
-    element.innerHTML = 
-    `<input class="inpt"
-    type="text"
-    placeholder="Item">
-    <button class="del" onclick = "Deleted(${i})>
-     <img  src="/img/delete.svg" alt="delete">
-     </button>
-`
-    page.context.daysContainer.appendChild(element)
-   });
 }
 
 
 
-(()=>{
-    loadData()
-})
+
+
+function addComent(event){
+    event.preventDefault()
+    const dat = new FormData(event.comment)
+    
+}
+
+
+(() => {
+    loadData();
+    add();
+})();

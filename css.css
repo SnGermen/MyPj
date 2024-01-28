@@ -1,32 +1,22 @@
-*{
+* {
     box-sizing: border-box;
-    
 }
 
-.boss{
-    background-color: #E0FFFF	;
+.boss {
+    background-color: #E0FFFF;
 }
 
-h1{
+h1 {
     font-size: 30px;
-font-family: Comfortaa;
-font-weight: 400;
-word-wrap: break-word
+    font-weight: 400;
+    text-align: center; 
 }
 
-.obligatory{
+.form {
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: auto;
     align-items: center;
-}
-
-.del{
-
-    background: none;
-    border: none;
-    cursor: pointer;
-    border: 5px;
 }
 
