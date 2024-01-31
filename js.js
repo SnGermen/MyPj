@@ -1,47 +1,62 @@
 let container = [];
-const HK = 'Hk';
-let actineContainer
-
+const HK = "Hk";
+let golActiveHabitId;
 
 const page = {
-    context: {
-        daysContainer: document.querySelector('.obligatory'),
-    }
+  context: {
+    daysContainer: document.querySelector(".obligatory"),
+  },
 };
 
 function loadData() {
-    const habitsString = localStorage.getItem(HK);
-    const habitArr = JSON.parse(habitsString);
-    if (Array.isArray(habitArr)) {
-        container = habitArr;
-    }
+  const habitsString = localStorage.getItem(HK);
+  const habitArr = JSON.parse(habitsString);
+  if (Array.isArray(habitArr)) {
+    container = habitArr;
+  }
 }
 
 function saveData() {
-    localStorage.setItem(HK, JSON.stringify(container));
+  localStorage.setItem(HK, JSON.stringify(container));
 }
 
+function rerender(activeHabitId) {
+  golActiveHabitId = activeHabitId;
+  const activeHabit = container.find((habit) => habit.id === activeHabitId);
+  if (!activeHabit) {
+    return;
+  }
+}
 
+function addComment(event) {
+  const form = event.target;
+  event.preventDefault();
+  const data = new FormData(form);
 
+  const comment = data.get("comment");
 
+  if (!comment.trim()) {
+    form['comment'].classList.add('noLeters');
+  } else {
+    form['comment'].classList.remove('noLeters');
+ }
+    container = container.map(habit => {
+      if (habit.id === golActiveHabitId) {
+        return {
+          ...habit,
+       
+        };
+      }
+      return habit;
+    });
 
-
-function addComent(event){
-    event.preventDefault()
-    const data = new FormData(event.target)
-    const comment =  data.get('comment')
-  container.push(comment)
     
-
-
-
-
-    saveData()
+    form['comment'].value = '';
+    rerender(golActiveHabitId);
+    saveData();
+ 
 }
-
 
 (() => {
-
-    loadData()
-
-})();
+  loadData();
+})()
