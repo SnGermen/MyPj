@@ -1,5 +1,7 @@
 let container = [];
 const HK = 'Hk';
+let actineContainer
+
 
 const page = {
     context: {
@@ -19,16 +21,6 @@ function saveData() {
     localStorage.setItem(HK, JSON.stringify(container));
 }
 
-function add() {
-
-    const additionalInput = document.createElement('input');
-    additionalInput.classList.add('inpt');
-    additionalInput.type = 'text';
-    additionalInput.placeholder = 'Additional Item';
-    page.context.daysContainer.appendChild(additionalInput);
-     
-
-}
 
 
 
@@ -36,12 +28,20 @@ function add() {
 
 function addComent(event){
     event.preventDefault()
-    const dat = new FormData(event.comment)
+    const data = new FormData(event.target)
+    const comment =  data.get('comment')
+  container.push(comment)
     
+
+
+
+
+    saveData()
 }
 
 
 (() => {
-    loadData();
-    add();
+
+    loadData()
+
 })();
