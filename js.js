@@ -1,6 +1,5 @@
 let container = [];
-const HK = "Hk";
-let golActiveHabitId;
+const HK = "HK";
 
 const page = {
   context: {
@@ -20,43 +19,28 @@ function saveData() {
   localStorage.setItem(HK, JSON.stringify(container));
 }
 
-function rerender(activeHabitId) {
-  golActiveHabitId = activeHabitId;
-  const activeHabit = container.find((habit) => habit.id === activeHabitId);
-  if (!activeHabit) {
-    return;
-  }
-}
-
 function addComment(event) {
   const form = event.target;
   event.preventDefault();
   const data = new FormData(form);
 
   const comment = data.get("comment");
+  form["comment"].classList.remove("noLeters");
+  if (!comment) {
+    form["comment"].classList.add("noLeters");
+  }
+  console.log(comment);
 
-  if (!comment.trim()) {
-    form['comment'].classList.add('noLeters');
-  } else {
-    form['comment'].classList.remove('noLeters');
- }
-    container = container.map(habit => {
-      if (habit.id === golActiveHabitId) {
-        return {
-          ...habit,
-       
-        };
-      }
-      return habit;
-    });
+  container.push(comment);
 
-    
-    form['comment'].value = '';
-    rerender(golActiveHabitId);
-    saveData();
- 
+  const contentContainer = document.getElementById("contentContainer");
+  const newDiv = document.createElement("div");
+  newDiv.innerHTML = comment;
+  contentContainer.appendChild(newDiv);
+
+  form["comment"].value = "";
 }
 
 (() => {
   loadData();
-})()
+})();
