@@ -31,14 +31,22 @@ function addComment(event) {
   }
   console.log(comment);
 
-  container.push(comment);
+
+
+  container.push(Object.assign( {comment}));
 
   const contentContainer = document.getElementById("contentContainer");
   const newDiv = document.createElement("div");
   newDiv.innerHTML = comment;
   contentContainer.appendChild(newDiv);
 
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  contentContainer.appendChild(checkbox);
+
   form["comment"].value = "";
+  saveData();
+
 }
 
 (() => {
