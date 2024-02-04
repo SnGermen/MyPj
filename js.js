@@ -28,6 +28,7 @@ function addComment(event) {
   form["comment"].classList.remove("noLeters");
   if (!comment) {
     form["comment"].classList.add("noLeters");
+    return;
   }
   console.log(comment);
 
