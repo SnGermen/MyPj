@@ -19,6 +19,26 @@ function saveData() {
   localStorage.setItem(HK, JSON.stringify(container));
 }
 
+
+
+
+
+function renderComment(comment, isCompleted = false) {
+  const html = `
+    <div class="taskItem">
+      <input class="taskItem__checkbox" type="checkbox" ${
+        isCompleted ? 'checked' : ''
+      } />
+      <div class="taskItem__text">${comment}</div>
+    </div>
+  `
+  // contentContainer.innerHTML += html
+  contentContainer.insertAdjacentHTML('beforeend', html)
+
+
+}
+
+
 function addComment(event) {
   const form = event.target;
   event.preventDefault();
@@ -31,25 +51,28 @@ function addComment(event) {
     return;
   }
   console.log(comment);
+  renderComment(comment)
 
 
 
-  container.push(Object.assign( {comment}));
-
-  const contentContainer = document.getElementById("contentContainer");
-  const newDiv = document.createElement("div");
-  newDiv.innerHTML = comment;
-  contentContainer.appendChild(newDiv);
-
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  contentContainer.appendChild(checkbox);
+  container.push({ comment, isCompleated: false, isDeleted: false });
+  
 
   form["comment"].value = "";
-  saveData();
 
+
+  saveData();
+  
 }
 
 (() => {
+
   loadData();
+
 })();
+
+
+
+//render items from localStorage
+//add delete button for item
+

@@ -23,3 +23,28 @@ h1 {
 .noLeters{
   background: red;
 }
+
+.taskItem {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.taskItem__checkbox{
+    min-width: 30px;
+    width: 30px;
+
+}
+
+
+.taskItem__text{
+    flex-grow: 1;
+    
+}
