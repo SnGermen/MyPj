@@ -1,5 +1,6 @@
 let container = [];
 const HK = "HK";
+let haib;
 
 const page = {
   context: {
@@ -30,13 +31,15 @@ function renderComment(comment, isCompleted = false) {
         isCompleted ? 'checked' : ''
       } />
       <div class="taskItem__text">${comment}</div>
-    </div>
-  `
+      
+  `;
+  
   // contentContainer.innerHTML += html
-  contentContainer.insertAdjacentHTML('beforeend', html)
-
+  contentContainer.insertAdjacentHTML('beforeend', html);
+  saveData();
 
 }
+
 
 
 function addComment(event) {
@@ -51,7 +54,7 @@ function addComment(event) {
     return;
   }
   console.log(comment);
-  renderComment(comment)
+  
 
 
 
@@ -60,9 +63,21 @@ function addComment(event) {
 
   form["comment"].value = "";
 
-
+  renderComment(comment)
   saveData();
   
+}
+
+function Delete(){
+let taskItemtext = document.querySelector('.taskItem__text')
+ for (let inpt of taskItemtext){
+  let buttoncls = document.createElement('button')
+  buttoncls.className = 'delete'
+  buttoncls.innerHTML = 'Del'
+
+  buttoncls.onclick = () => inpt.remove()
+  inpt.append(buttoncls)
+ }
 }
 
 (() => {
