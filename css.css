@@ -49,5 +49,29 @@ h1 {
     
 }
 
-.taskItem__text{
-}
+.taskItem__delete {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .taskItem__delete::before,
+  .taskItem__delete::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: red;
+  }
+  
+  .taskItem__delete::before {
+    transform: rotate(45deg);
+  }
+  
+  .taskItem__delete::after {
+    transform: rotate(-45deg);
+  }
+  

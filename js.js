@@ -1,6 +1,5 @@
 let container = [];
 const HK = "HK";
-let haib;
 
 const page = {
   context: {
@@ -16,31 +15,30 @@ function loadData() {
   }
 }
 
+function renderAllItemes() {
+  container.forEach((elem, index) => {
+    console.log(elem);
+    renderComment(elem.comment, elem.isCompleated, index);
+  });
+}
+
 function saveData() {
   localStorage.setItem(HK, JSON.stringify(container));
 }
 
-
-
-
-
-function renderComment(comment, isCompleted = false) {
+function renderComment(comment, isCompleted = false, index) {
   const html = `
     <div class="taskItem">
       <input class="taskItem__checkbox" type="checkbox" ${
-        isCompleted ? 'checked' : ''
+        isCompleted ? "checked" : ""
       } />
       <div class="taskItem__text">${comment}</div>
-      
+      <div class="taskItem__delete" onclick="deleteItem(${index})"></div>
   `;
-  
+
   // contentContainer.innerHTML += html
-  contentContainer.insertAdjacentHTML('beforeend', html);
-  saveData();
-
+  contentContainer.insertAdjacentHTML("beforeend", html);
 }
-
-
 
 function addComment(event) {
   const form = event.target;
@@ -53,41 +51,26 @@ function addComment(event) {
     form["comment"].classList.add("noLeters");
     return;
   }
-  console.log(comment);
-  
-
-
-
   container.push({ comment, isCompleated: false, isDeleted: false });
-  
 
   form["comment"].value = "";
-
-  renderComment(comment)
+  renderComment(comment, false, container.length - 1);
   saveData();
+}
+
+function deleteItem(i) {
+  //Delete this element from HTML 
   
+  //Find this  element in array and  isDeleted proprty = true
+
+  //Save data  in localStorage 
+
+  //function renderAllItems: Невыводить елементы где свойствo  isDeleted = true
 }
-
-function Delete(){
-let taskItemtext = document.querySelector('.taskItem__text')
- for (let inpt of taskItemtext){
-  let buttoncls = document.createElement('button')
-  buttoncls.className = 'delete'
-  buttoncls.innerHTML = 'Del'
-
-  buttoncls.onclick = () => inpt.remove()
-  inpt.append(buttoncls)
- }
-}
-
 (() => {
-
   loadData();
-
+  renderAllItemes();
 })();
-
-
 
 //render items from localStorage
 //add delete button for item
-
