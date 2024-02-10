@@ -36,7 +36,6 @@ function renderComment(comment, isCompleted = false, index) {
       <div class="taskItem__delete" onclick="deleteItem(${index})"></div>
   `;
 
-  // contentContainer.innerHTML += html
   contentContainer.insertAdjacentHTML("beforeend", html);
 }
 
@@ -59,13 +58,22 @@ function addComment(event) {
 }
 
 function deleteItem(i) {
-  //Delete this element from HTML 
-  
-  //Find this  element in array and  isDeleted proprty = true
+  // Удалить элемент из HTML (предположим, что i - это индекс элемента, который нужно удалить)
+  const itemToDelete = document.getElementById('element-' + i);
+  if (itemToDelete) {
+      itemToDelete.remove();
+  }
 
-  //Save data  in localStorage 
+  // Найти этот элемент в массиве и установить свойство isDeleted в true
+  if (i) {
+      i.isDeleted = true;
+  }
 
-  //function renderAllItems: Невыводить елементы где свойствo  isDeleted = true
+  // Сохранить данные в localStorage
+  saveData();
+
+  // Перерисовать все элементы, исключая те, у которых свойство isDeleted равно true
+  renderAllItemes();
 }
 (() => {
   loadData();
