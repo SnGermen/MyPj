@@ -57,24 +57,26 @@ function addComment(event) {
   saveData();
 }
 
-function deleteItem(i) {
-  // Удалить элемент из HTML (предположим, что i - это индекс элемента, который нужно удалить)
-  const itemToDelete = document.getElementById('element-' + i);
-  if (itemToDelete) {
-      itemToDelete.remove();
-  }
 
-  // Найти этот элемент в массиве и установить свойство isDeleted в true
-  if (i) {
-      i.isDeleted = true;
-  }
-
-  // Сохранить данные в localStorage
-  saveData();
-
-  // Перерисовать все элементы, исключая те, у которых свойство isDeleted равно true
-  renderAllItemes();
-}
+    function deleteItem(i) {
+      // Найдем элемент по индексу в массиве
+      const itemToDelete = container[i];
+    
+      // Убедимся, что элемент существует и не был удален ранее
+      if (itemToDelete && !itemToDelete.isDeleted) {
+        // Устанавливаем свойство isDeleted в true
+        itemToDelete.isDeleted = true;
+    
+        // Удаляем элемент из массива
+        container.splice(i, 1);
+    
+        // Сохранить данные в localStorage
+        saveData();
+    
+        // Перерисовать все элементы, исключая удаленные
+        renderAllItemes();
+      }
+    }
 (() => {
   loadData();
   renderAllItemes();
