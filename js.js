@@ -58,9 +58,9 @@ function addComment(event) {
 }
 
 
-    function deleteItem(i) {
+    function deleteItem(index) {
       // Найдем элемент по индексу в массиве
-      const itemToDelete = container[i];
+      const itemToDelete = container[index];
     
       // Убедимся, что элемент существует и не был удален ранее
       if (itemToDelete && !itemToDelete.isDeleted) {
@@ -68,14 +68,16 @@ function addComment(event) {
         itemToDelete.isDeleted = true;
     
         // Удаляем элемент из массива
-        container.splice(i, 1);
+        container.splice(index, 1);
     
         // Сохранить данные в localStorage
-        saveData();
+      
     
         // Перерисовать все элементы, исключая удаленные
         renderAllItemes();
       }
+  saveData();
+
     }
 (() => {
   loadData();
