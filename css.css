@@ -75,3 +75,14 @@ h1 {
     transform: rotate(-45deg);
   }
   
+
+  .divy {
+    text-align: center; /* Центрируем содержимое по горизонтали */
+  }
+  
+  .divy > div {
+    display: inline-block;
+    width: 30%; /* Ширина каждой колонки */
+    margin: 0 2%; /* Отступ между колонками */
+    text-align: left; /* Выравниваем текст внутри колонок по левому краю */
+  }
