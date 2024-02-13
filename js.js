@@ -4,9 +4,9 @@ const contentContainer = document.getElementById('contentContainer')
 
 
 function loadData() {
-  const String = localStorage.getItem(HK)
-  const Arr = JSON.parse(String)
-  if (Array.isArray(Arr)) {
+  const toString = localStorage.getItem(HK)
+  const toArr = JSON.parse(toString)
+  if (Array.isArray(toArr)) {
     container = Arr
   }
 }
