@@ -7,7 +7,7 @@ function loadData() {
   const toString = localStorage.getItem(HK)
   const toArr = JSON.parse(toString)
   if (Array.isArray(toArr)) {
-    container = Arr
+    container = toArr
   }
 }
 
@@ -72,10 +72,34 @@ function rerender(item){
   saveData()
 }
 
+
+document.querySelector('.input').oninput = function() {
+  let val = this.value.trim();
+  let elementsOfArr = container;
+  if (val !== '') {
+    elementsOfArr.forEach(function(elem) {
+      if (elem.innerText.find(val) == false) {
+        elem.classList.add('hide');
+      } else {
+        elem.classList.remove('hide');
+      }
+    });
+  } else{
+    elementsOfArr.forEach(function(elem) {
+      
+        elem.classList.remove('hide');
+    })
+  }
+};
+
+
 ;(() => {
   loadData()
   renderAllItemes()
 })()
+
+
+
 
 //render items from localStorage
 //add delete button for item
