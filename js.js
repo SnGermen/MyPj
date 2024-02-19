@@ -74,15 +74,15 @@ function rerender(item){
 
 
 document.querySelector('.input').oninput = function() {
-  let val = this.value.trim();
   let elementsOfArr = container;
-  if (val !== '') {
+  if (this.value !== '') {
+
     elementsOfArr.forEach(function(elem) {
-      if (elem.innerText.find(val) == false) {
-        elem.classList.add('hide');
-      } else {
-        elem.classList.remove('hide');
-      }
+      // if (elem.innerText.find(this.value) == false) {
+      //   elem.classList.add('hide');
+      // } else {
+      //   elem.classList.remove('hide');
+      // }
     });
   } else{
     elementsOfArr.forEach(function(elem) {
@@ -97,9 +97,6 @@ document.querySelector('.input').oninput = function() {
   loadData()
   renderAllItemes()
 })()
-
-
-
 
 //render items from localStorage
 //add delete button for item
